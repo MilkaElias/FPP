@@ -1,5 +1,7 @@
 package com.company;
 
+import java.util.Arrays;
+
 public class MyStringList {
     private final int INITIAL_LENGTH = 2;
     private String[] strArray;
@@ -11,37 +13,70 @@ public class MyStringList {
     }
 
     public void add(String s){
-        //implement
+        if(size< strArray.length){
+            strArray[size]=s;
+            size++;
+        }
+        else{
+            resize();
+            strArray[size]=s;
+            size++;
+        }
     }
 
+
     public String get(int i){
-        //implement
+        if(i<size) return strArray[i];
         return null;
     }
 
+
     public boolean find(String s){
-        //implemement
+        for(int index=0;index< size;index++){
+            if(strArray[index].equals(s)) return true;
+        }
         return false;
     }
 
-    public void insert(String s, int pos){
-        //implement
 
+    public void insert(String s, int pos){
+        if(pos>=size)
+            resize();
+        strArray[pos] = s;
+        size++;
     }
 
-    public boolean remove(String s){
-        //implement
+
+    public boolean remove(String s) {
+        for(int i = 0; i<size;i++)
+            if(strArray[i].equals(s)) {
+                size--;
+                String[] newStrArray = new String[size];
+                System.arraycopy(strArray, 0, newStrArray, 0, i);
+                System.arraycopy(strArray, i+1, newStrArray, i, size-i);
+                strArray = newStrArray;
+                return true;
+            }
+
         return false;
     }
 
 
     private void resize(){
-        //implement
+        String[] newArray = new String[2*size];
+        System.arraycopy(strArray, 0, newArray, 0, size);
+        strArray = newArray;
+
     }
+
+
+
     public String toString(){
-        //implement
-        return "";
+        String[] sizedStrArray = new String[size];
+        System.arraycopy(strArray, 0, sizedStrArray, 0, size);
+        return Arrays.toString(sizedStrArray);
     }
+
     public int size() {
         return size;
     }

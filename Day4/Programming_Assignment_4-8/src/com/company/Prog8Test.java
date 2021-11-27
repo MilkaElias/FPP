@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Assertions;
 
 
 
-public class TestProg8 {
+public class Prog8Test {
     @Test
     public void testMin(){
         int[] testInput={2, -21, 3, 45, 0, 12, 18, 6, 3, 1, 0, -22};
